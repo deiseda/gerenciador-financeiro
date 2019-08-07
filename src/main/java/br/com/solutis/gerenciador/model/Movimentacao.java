@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import br.com.solutis.gerenciador.enums.EnumCiclo;
 import br.com.solutis.gerenciador.enums.EnumTipoMovimentacao;
 import javassist.SerialVersionUID;
 
@@ -19,16 +22,17 @@ import javassist.SerialVersionUID;
 @Table(name = "movimentacao")
 public class Movimentacao implements Serializable{
 	
-	private static final long SerialVersionUID = 1L;
+	//private static final Long SerialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id_movimentacao;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id_movimentacao;
 	
 	@Column(name = "descricao")
 	private String descricao;
 	
 	@Column(name = "data")
+	@DateTimeFormat(pattern= "dd-MM-yyyy")
 	private Date data;
 	
 	@Column(name = "tipo_movimentacao")
@@ -38,13 +42,38 @@ public class Movimentacao implements Serializable{
 	@Column(name = "qtd_parcela")
 	private int qtdParcela;
 	
+	@Column(name = "valor")
+	private Double valor;
 	
+	@Column(name = "ciclo")
+	@Enumerated(EnumType.STRING)
+	private EnumCiclo ciclo;
+	
+	@Column(name = "id_movimentacao_pai")
+	private Integer idMovimentacaoPai;
+	
+	public Movimentacao() {
+		
+	}
 
-	public Long getId_movimentacao() {
+	public Movimentacao(Integer id_movimentacao, String descricao, Date data, EnumTipoMovimentacao tipoMovimentacao,
+			int qtdParcela, Double valor, EnumCiclo ciclo, Integer idMovimentacaoPai) {
+		super();
+		this.id_movimentacao = id_movimentacao;
+		this.descricao = descricao;
+		this.data = data;
+		this.tipoMovimentacao = tipoMovimentacao;
+		this.qtdParcela = qtdParcela;
+		this.valor = valor;
+		this.ciclo = ciclo;
+		this.idMovimentacaoPai = idMovimentacaoPai;
+	}
+
+	public Integer getId_movimentacao() {
 		return id_movimentacao;
 	}
 
-	public void setId_movimentacao(Long id_movimentacao) {
+	public void setId_movimentacao(Integer id_movimentacao) {
 		this.id_movimentacao = id_movimentacao;
 	}
 
@@ -78,6 +107,31 @@ public class Movimentacao implements Serializable{
 
 	public void setQtdParcela(int qtdParcela) {
 		this.qtdParcela = qtdParcela;
+	}
+
+	public Double getValor() {
+		return valor;
+	}
+
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
+
+
+	public EnumCiclo getCiclo() {
+		return ciclo;
+	}
+
+	public void setCiclo(EnumCiclo ciclo) {
+		this.ciclo = ciclo;
+	}
+
+	public Integer getIdMovimentacaoPai() {
+		return idMovimentacaoPai;
+	}
+
+	public void setIdMovimentacaoPai(Integer idMovimentacaoPai) {
+		this.idMovimentacaoPai = idMovimentacaoPai;
 	}
 
 	
