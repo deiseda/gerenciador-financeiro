@@ -26,7 +26,8 @@ public class Movimentacao implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_movimentacao;
+	@Column(name = "id_movimentacao")
+	private Integer idMovimentacao;
 	
 	@Column(name = "descricao")
 	private String descricao;
@@ -56,10 +57,10 @@ public class Movimentacao implements Serializable{
 		
 	}
 
-	public Movimentacao(Integer id_movimentacao, String descricao, Date data, EnumTipoMovimentacao tipoMovimentacao,
+	public Movimentacao(Integer idMovimentacao, String descricao, Date data, EnumTipoMovimentacao tipoMovimentacao,
 			int qtdParcela, Double valor, EnumCiclo ciclo, Integer idMovimentacaoPai) {
 		super();
-		this.id_movimentacao = id_movimentacao;
+		this.idMovimentacao = idMovimentacao;
 		this.descricao = descricao;
 		this.data = data;
 		this.tipoMovimentacao = tipoMovimentacao;
@@ -70,11 +71,11 @@ public class Movimentacao implements Serializable{
 	}
 
 	public Integer getId_movimentacao() {
-		return id_movimentacao;
+		return idMovimentacao;
 	}
 
-	public void setId_movimentacao(Integer id_movimentacao) {
-		this.id_movimentacao = id_movimentacao;
+	public void setIdMovimentacao(Integer idMovimentacao) {
+		this.idMovimentacao = idMovimentacao;
 	}
 
 	public String getDescricao() {

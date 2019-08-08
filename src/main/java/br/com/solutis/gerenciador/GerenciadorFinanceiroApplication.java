@@ -29,7 +29,7 @@ public class GerenciadorFinanceiroApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 	
 		try {
-		Movimentacao mov1 = new Movimentacao(null, "teste deise", new Date(), EnumTipoMovimentacao.DESPESA, 2, 10D,null,null);
+		Movimentacao mov1 = new Movimentacao(null, "teste deise123", new Date(), EnumTipoMovimentacao.DESPESA, 2, 10D,null,null);
 
 		//movimentacaoRepository.save(mov1);
 		}catch (Exception e){
