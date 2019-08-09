@@ -37,7 +37,22 @@ public class MovimentacaoService {
 		 movimentacaoRepository.deleteById(idMovimentacao);
 	}
 	
-	public Movimentacao alterar(Movimentacao obj) {
+	public Movimentacao alterar(Movimentacao obj, Integer id) {
+		Movimentacao movimentacao = this.obterMovimentacao(id);
+		if(obj.getCiclo() != null) {
+			movimentacao.setCiclo(obj.getCiclo());
+		}
+		if(obj.getDescricao() != null) {
+			movimentacao.setDescricao(obj.getDescricao());
+		}
+		if(obj.getData() != null) {
+			movimentacao.setData(obj.getData());
+		}
+		
+		return movimentacaoRepository.save(movimentacao);
+	}
+	
+	public Movimentacao salvar(Movimentacao obj) {
 		return movimentacaoRepository.save(obj);
 	}
 
