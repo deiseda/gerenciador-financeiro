@@ -46,12 +46,6 @@ public class MovimentacaoController {
 			return obj;
 	}
 	
-	/*@PutMapping("/edit/{id}")
-	public ModelAndView edit(@PathVariable("idMovimentacao") Integer idMovimentacao) {
-		
-		return add(movimentacaoService.alterar(idMovimentacao));
-	}*/
-	
 	
 	//Delete 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
@@ -60,14 +54,15 @@ public class MovimentacaoController {
 		return ResponseEntity.noContent().build();
 	}
 	
-	//Altera não funciona a
+	//Altera 
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void>	alterar(@RequestBody Movimentacao obj, @PathVariable Integer id){
+	public ResponseEntity<Movimentacao>	alterar(@RequestBody Movimentacao obj, @PathVariable Integer id){
 		obj.setIdMovimentacao(id);
 		obj = movimentacaoService.alterar(obj, id);
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.ok().body(obj);
 	}
 	
+	// Salva
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> salvar(@RequestBody Movimentacao obj){
 		obj = movimentacaoService.salvar(obj);

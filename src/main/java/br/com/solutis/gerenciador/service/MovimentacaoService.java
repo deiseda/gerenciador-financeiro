@@ -48,7 +48,12 @@ public class MovimentacaoService {
 		if(obj.getData() != null) {
 			movimentacao.setData(obj.getData());
 		}
-		
+		if(obj.getTipoMovimentacao() != null) {
+			movimentacao.setTipoMovimentacao(obj.getTipoMovimentacao());
+		}
+		if(obj.getValor() != null) {
+			movimentacao.setValor(obj.getValor());
+		}
 		return movimentacaoRepository.save(movimentacao);
 	}
 	

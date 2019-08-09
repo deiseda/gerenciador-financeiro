@@ -2,6 +2,7 @@ package br.com.solutis.gerenciador.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -28,6 +31,9 @@ public class Movimentacao implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_movimentacao")
 	private Integer idMovimentacao;
+	
+	@OneToMany(mappedBy = "idMovimentacao")	
+	private List <MovimentacaoDetalhe> listMovimentacaoDetalhe;
 	
 	@Column(name = "descricao")
 	private String descricao;
@@ -133,6 +139,14 @@ public class Movimentacao implements Serializable{
 
 	public void setIdMovimentacaoPai(Integer idMovimentacaoPai) {
 		this.idMovimentacaoPai = idMovimentacaoPai;
+	}
+
+	public List<MovimentacaoDetalhe> getListMovimentacaoDetalhe() {
+		return listMovimentacaoDetalhe;
+	}
+
+	public void setListMovimentacaoDetalhe(List<MovimentacaoDetalhe> listMovimentacaoDetalhe) {
+		this.listMovimentacaoDetalhe = listMovimentacaoDetalhe;
 	}
 
 	
